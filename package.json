@@ -17,5 +17,10 @@
   "bugs": {
     "url": "https://github.com/raymondchavez333/ToDoList/issues"
   },
-  "homepage": "https://github.com/raymondchavez333/ToDoList#readme"
+  "homepage": "https://github.com/raymondchavez333/ToDoList#readme",
+  "devDependencies": {
+    "html-webpack-plugin": "^5.6.8",
+    "webpack-cli": "^7.2.2",
+    "webpack-dev-server": "^6.0.0"
+  }
 }

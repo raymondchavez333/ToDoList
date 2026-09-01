@@ -9,11 +9,5 @@ function createToDO(title, description, dueDate, priority) {
     return {getTitle, getDescription, getDueDate, getPriority};
 }
 
-// function createToDO(title) {
-
-//     const getTitle = () => title;
-    
-//     return {getTitle};
-// }
 
 export const ToDo = createToDO;

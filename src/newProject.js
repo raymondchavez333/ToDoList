@@ -2,7 +2,11 @@ function createProject (name){
 
     let getName = () => name;
 
-    return {getName};
+    let todos = [];
+
+    let getTodos = () => todos;
+
+    return {getName, getTodos};
 }
 
 export const proj = createProject;

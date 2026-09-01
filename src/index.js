@@ -4,4 +4,4 @@ import {ToDo} from "./newToDO.js";
 
 console.log("Hello");
 console.log(greeting);
-console.log(ToDo("School").getTitle());
+console.log(ToDo("hello", "hahaha", 123, "high").getPriority());

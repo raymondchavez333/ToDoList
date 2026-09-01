@@ -4,9 +4,10 @@ function createProject (name){
 
     let todos = [];
 
+    let addTodos = (item) => todos.push(item); 
     let getTodos = () => todos;
 
-    return {getName, getTodos};
+    return {getName, addTodos, getTodos};
 }
 
 export const proj = createProject;

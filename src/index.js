@@ -19,12 +19,18 @@ const firstTodo = ToDo("hello", "hahaha", 123, "high");
 firstProj.addTodos(firstTodo);
 
 console.log(firstProj.getTodos()[0].getTitle());
+console.log(firstProj.getTodos()[0].getStatus());
+console.log(firstProj.getTodos()[0].setStatus());
+console.log(firstProj.getTodos()[0].getStatus());
 
 const secondProj = proj("UC assignments");
 const secondTodo = ToDo("hehe", "ew", 456, "low");
 secondProj.addTodos(secondTodo);
 
 console.log(secondProj.getTodos()[0].getTitle());
+console.log(secondProj.getTodos()[0].getStatus());
+console.log(secondProj.getTodos()[0].setStatus());
+console.log(secondProj.getTodos()[0].getStatus());
 
 console.log(firstProj.getName());
 console.log(secondProj.getName());

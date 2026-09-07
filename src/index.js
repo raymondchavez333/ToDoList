@@ -3,6 +3,7 @@ import {greeting} from "./greeting.js";
 import {ToDo} from "./newToDO.js";
 import { proj } from "./newProject.js";
 import { status } from "./statusCheck.js";
+import { priority } from "./changePriority.js";
 // let toDoList = [];
 
 // console.log("Hello");
@@ -22,6 +23,7 @@ console.log(firstProj.getTodos()[0].getTitle());
 console.log(firstProj.getTodos()[0].getStatus());
 console.log(status(firstProj));
 console.log(firstProj.getTodos()[0].getStatus());
+console.log(priority(firstProj, "low"));
 
 const secondProj = proj("UC assignments");
 const secondTodo = ToDo("hehe", "ew", 456, "low");

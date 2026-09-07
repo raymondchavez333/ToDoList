@@ -2,8 +2,8 @@ import "./styles.css";
 import {greeting} from "./greeting.js";
 import {ToDo} from "./newToDO.js";
 import { proj } from "./newProject.js";
-
-let toDoList = [];
+import { status } from "./statusCheck.js";
+// let toDoList = [];
 
 // console.log("Hello");
 // console.log(greeting);
@@ -20,7 +20,7 @@ firstProj.addTodos(firstTodo);
 
 console.log(firstProj.getTodos()[0].getTitle());
 console.log(firstProj.getTodos()[0].getStatus());
-console.log(firstProj.getTodos()[0].setStatus());
+console.log(status(firstProj));
 console.log(firstProj.getTodos()[0].getStatus());
 
 const secondProj = proj("UC assignments");

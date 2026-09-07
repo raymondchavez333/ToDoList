@@ -1,10 +1,11 @@
 function createToDO(title, description, dueDate, priority) {
 
-    let getTitle = () => title;
-    let getDescription = () => description;
-    let getDueDate = () => dueDate;
-    let getPriority = () => priority;
+    const getTitle = () => title;
+    const getDescription = () => description;
+    const getDueDate = () => dueDate;
+    const getPriority = () => priority;
 
+    
 
     return {getTitle, getDescription, getDueDate, getPriority};
 }

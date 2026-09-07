@@ -1,11 +1,11 @@
 function createProject (name){
 
-    let getName = () => name;
+    const getName = () => name;
 
     let todos = [];
 
-    let addTodos = (item) => todos.push(item); 
-    let getTodos = () => todos;
+    const addTodos = (item) => todos.push(item); 
+    const getTodos = () => todos;
 
     return {getName, addTodos, getTodos};
 }

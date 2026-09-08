@@ -4,6 +4,7 @@ import {ToDo} from "./newToDO.js";
 import { proj } from "./newProject.js";
 import { status } from "./statusCheck.js";
 import { priority } from "./changePriority.js";
+import { deleter } from "./deleteTodo.js";
 // let toDoList = [];
 
 // console.log("Hello");
@@ -36,3 +37,5 @@ console.log(secondProj.getTodos()[0].getStatus());
 
 console.log(firstProj.getName());
 console.log(secondProj.getName());
+
+console.log(deleter(firstProj));

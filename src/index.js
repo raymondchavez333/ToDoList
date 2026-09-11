@@ -6,6 +6,7 @@ import { status } from "./statusCheck.js";
 import { priority } from "./changePriority.js";
 import { deleter } from "./deleteTodo.js";
 import { projects } from "./allProjects.js";
+import { deleterProj } from "./deleteProject.js";
 // let toDoList = [];
 
 // console.log("Hello");
@@ -17,13 +18,15 @@ import { projects } from "./allProjects.js";
 
 // console.log(toDoList[0].getDescription());
 
+let projectTotal = projects();
+
 const firstProj = proj("UC works");
 const firstTodo = ToDo("hello", "hahaha", "March 3, 2027", "high");
 firstProj.addTodos(firstTodo);
 const firstTodo2 = ToDo("yow", "second", "September 3, 2027", "medium");
 firstProj.addTodos(firstTodo2);
-projects.addProject(firstProj);
-console.log(projects.getProjects());
+projectTotal.addProject(firstProj);
+console.log(projectTotal.getProjects());
 // console.log(firstProj.getTodos());
 // console.log(firstProj.getTodos()[0].getDueDate());
 
@@ -36,8 +39,10 @@ console.log(projects.getProjects());
 const secondProj = proj("UC assignments");
 const secondTodo = ToDo("hehe", "ew", 456, "low");
 secondProj.addTodos(secondTodo);
-projects.addProject(secondProj);
-console.log(projects.getProjects());
+projectTotal.addProject(secondProj);
+console.log(projectTotal.getProjects());
+
+// console.log(deleterProj(projects()));
 
 // console.log(secondProj.getTodos()[0].getTitle());
 // console.log(secondProj.getTodos()[0].getStatus());

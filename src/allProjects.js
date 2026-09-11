@@ -1,4 +1,4 @@
-function allProjects(project){
+function allProjects(){
     let projects = [];
 
     const addProject = (item) => projects.push(item); 
@@ -7,4 +7,4 @@ function allProjects(project){
     return {addProject, getProjects};
 }
 
-export const projects = allProjects();
+export const projects = allProjects;

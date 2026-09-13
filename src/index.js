@@ -25,6 +25,8 @@ const firstTodo = ToDo("hello", "hahaha", "March 3, 2027", "high");
 firstProj.addTodos(firstTodo);
 const firstTodo2 = ToDo("yow", "second", "September 3, 2027", "medium");
 firstProj.addTodos(firstTodo2);
+const firstTodo3 = ToDo("sup", "third", "September 5, 2027", "low");
+firstProj.addTodos(firstTodo3);
 projectTotal.addProject(firstProj);
 // console.log(firstProj.getTodos());
 // console.log(firstProj.getTodos()[0].getDueDate());
@@ -62,8 +64,11 @@ projectTotal.addProject(thirdProj);
 // priority(projectTotal,0,0,"low");
 // console.log(projectTotal.getProjects()[0].getTodos()[0].getPriority());
 
-deleterProj(projectTotal,1);
-console.log(projectTotal.getProjects()[1].getName());
+// deleterProj(projectTotal,1);
+// console.log(projectTotal.getProjects()[1].getName());
+
+deleter(projectTotal,0, 1);
+console.log(projectTotal.getProjects()[0].getTodos()[1].getTitle());
 
 // console.log(firstProj.getName());
 // console.log(secondProj.getName());

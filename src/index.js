@@ -59,8 +59,11 @@ projectTotal.addProject(thirdProj);
 // });
 
 // projectTotal.getProjects()[0].getTodos()[0].setPriority("low");
-priority(projectTotal,0,0,"low");
-console.log(projectTotal.getProjects()[0].getTodos()[0].getPriority());
+// priority(projectTotal,0,0,"low");
+// console.log(projectTotal.getProjects()[0].getTodos()[0].getPriority());
+
+deleterProj(projectTotal,1);
+console.log(projectTotal.getProjects()[1].getName());
 
 // console.log(firstProj.getName());
 // console.log(secondProj.getName());

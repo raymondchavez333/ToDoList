@@ -67,8 +67,12 @@ projectTotal.addProject(thirdProj);
 // deleterProj(projectTotal,1);
 // console.log(projectTotal.getProjects()[1].getName());
 
-deleter(projectTotal,0, 1);
-console.log(projectTotal.getProjects()[0].getTodos()[1].getTitle());
+// deleter(projectTotal,0, 1);
+// console.log(projectTotal.getProjects()[0].getTodos()[1].getTitle());
+
+console.log(projectTotal.getProjects()[0].getTodos()[0].getStatus());
+status(projectTotal,0,0);
+console.log(projectTotal.getProjects()[0].getTodos()[0].getStatus());
 
 // console.log(firstProj.getName());
 // console.log(secondProj.getName());

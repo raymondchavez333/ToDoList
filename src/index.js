@@ -7,16 +7,8 @@ import { priority } from "./changePriority.js";
 import { deleter } from "./deleteTodo.js";
 import { projects } from "./allProjects.js";
 import { deleterProj } from "./deleteProject.js";
-// let toDoList = [];
+import { parse } from "date-fns";
 
-// console.log("Hello");
-// console.log(greeting);
-// console.log(ToDo("hello", "hahaha", 123, "high").getPriority());
-// console.log(proj("UCS").getName());
-
-// toDoList.push(ToDo("hello", "hahaha", 123, "high"));
-
-// console.log(toDoList[0].getDescription());
 
 let projectTotal = projects();
 
@@ -27,3 +19,9 @@ projectTotal.addProject(defaultProj);
 
 console.log(projectTotal.getProjects()[0].getName());
 console.log(projectTotal.getProjects()[0].getTodos()[0].getTitle());
+
+// const { parse } = require("date-fns");
+
+var result = parse('02/11/2014', 'MM/dd/yyyy', new Date());
+
+console.log(result);

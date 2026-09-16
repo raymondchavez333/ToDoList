@@ -20,61 +20,10 @@ import { deleterProj } from "./deleteProject.js";
 
 let projectTotal = projects();
 
-const firstProj = proj("UC works");
-const firstTodo = ToDo("hello", "hahaha", "March 3, 2027", "high");
-firstProj.addTodos(firstTodo);
-const firstTodo2 = ToDo("yow", "second", "September 3, 2027", "medium");
-firstProj.addTodos(firstTodo2);
-const firstTodo3 = ToDo("sup", "third", "September 5, 2027", "low");
-firstProj.addTodos(firstTodo3);
-projectTotal.addProject(firstProj);
-// console.log(firstProj.getTodos());
-// console.log(firstProj.getTodos()[0].getDueDate());
+const defaultProj = proj("Default");
+const defaultToDo = ToDo("Default", "hahaha", "March 3, 2027", "high");
+defaultProj.addTodos(defaultToDo);
+projectTotal.addProject(defaultProj);
 
-// console.log(firstProj.getTodos()[0].getTitle());
-// console.log(firstProj.getTodos()[0].getStatus());
-// console.log(status(firstProj));
-// console.log(firstProj.getTodos()[0].getStatus());
-// console.log(priority(firstProj, "low"));
-
-const secondProj = proj("UC assignments");
-const secondTodo = ToDo("hehe", "ew", 456, "low");
-secondProj.addTodos(secondTodo);
-projectTotal.addProject(secondProj);
-
-// console.log(deleterProj(projects()));
-
-// console.log(secondProj.getTodos()[0].getTitle());
-// console.log(secondProj.getTodos()[0].getStatus());
-// console.log(secondProj.getTodos()[0].setStatus());
-// console.log(secondProj.getTodos()[0].getStatus());
-
-const thirdProj = proj("House works");
-const thirdTodo = ToDo("haha", "okay", 789, "high");
-thirdProj.addTodos(thirdTodo);
-projectTotal.addProject(thirdProj);
-// console.log(projectTotal.getProjects());
-
-
-// projectTotal.getProjects().forEach(element => {
-//     console.log(`${element.getName()} project has ${element.getTodos().length} todos`); 
-// });
-
-// projectTotal.getProjects()[0].getTodos()[0].setPriority("low");
-// priority(projectTotal,0,0,"low");
-// console.log(projectTotal.getProjects()[0].getTodos()[0].getPriority());
-
-// deleterProj(projectTotal,1);
-// console.log(projectTotal.getProjects()[1].getName());
-
-// deleter(projectTotal,0, 1);
-// console.log(projectTotal.getProjects()[0].getTodos()[1].getTitle());
-
-console.log(projectTotal.getProjects()[0].getTodos()[0].getStatus());
-status(projectTotal,0,0);
-console.log(projectTotal.getProjects()[0].getTodos()[0].getStatus());
-
-// console.log(firstProj.getName());
-// console.log(secondProj.getName());
-
-// console.log(deleter(firstProj));
+console.log(projectTotal.getProjects()[0].getName());
+console.log(projectTotal.getProjects()[0].getTodos()[0].getTitle());

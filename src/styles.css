@@ -11,7 +11,7 @@ body {
 
 .dashboard {
     display: grid;
-    grid-template-columns: 280px 1190px;
+    grid-template-columns: 340px 1130px;
     grid-template-rows: 200px 800px;
 }
 
@@ -55,3 +55,45 @@ svg {
     font-weight: bold;
 }
 
+button {
+  background-color: #08589d;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.projects {
+    display: grid;
+    grid-template-rows: 80px 80px 70px 80px;
+    justify-items: center;
+}
+
+.sidebar1, .sidebar2, .sidebar3, .sidebar4 {
+    align-self: center;
+}
+
+.header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.main {
+    display: grid;
+    grid-template-rows: 100px 1fr;
+
+}
+
+.mainTop {
+    display: grid;
+    grid-template-rows: 1fr;
+    justify-content: center;
+    align-items: center ;
+}

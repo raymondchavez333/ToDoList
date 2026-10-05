@@ -14,10 +14,11 @@ let projectTotal = projects();
 
 const defaultProj = proj("Default");
 const defaultToDo = ToDo("Default", "hahaha", "March 3, 2027", "high");
-defaultProj.addTodos(defaultToDo);
+defaultProj.addTodos({title: defaultToDo.getTitle(), description: defaultToDo.getDescription(), dueDate: defaultToDo.getDueDate(), priority: defaultToDo.getPriority(), status: defaultToDo.getStatus()});
 projectTotal.addProject(defaultProj);
 
-// console.log(projectTotal.getProjects()[0].getName());
+console.log(JSON.parse(localStorage.getItem("Default")));
+console.log(projectTotal);
 // console.log(projectTotal.getProjects()[0].getTodos()[0].getTitle());
 
 
@@ -37,26 +38,30 @@ projectTotal.addProject(defaultProj);
 // let existingProjects = projectTotal.getProjects().map(item => item.getName());
 // projectList.textContent = existingProjects;
 
-if (!localStorage.getItem("project")) {
-  populateStorage();
-} else {
-  setProject();
-}
+// if (!localStorage.getItem("project")) {
+//   populateStorage();
+// } else {
+//   setProject();
+// }
 
-function populateStorage() {
-  localStorage.setItem('project', projectTotal);
+// function populateStorage() {
+//   localStorage.setItem('project', JSON.stringify(projectTotal.getProjects()));
 
-  setProject();
-}
+//   setProject();
+// }
 
 function setProject() {
-  var currentProj = localStorage.getItem('project');
+  let currentProj = localStorage.getItem('project');
 //   var currentFont = localStorage.getItem('font');
 //   var currentImage = localStorage.getItem('image');
 
 //   document.getElementById('bgcolor').value = currentColor;
 //   document.getElementById('font').value = currentFont;
 //   document.getElementById('image').value = currentImage;
+
+  // console.log(JSON.parse(currentProj));
+
+// document.querySelector(".sidebar2").textContent = currentProj;  
 
 //   htmlElem.style.backgroundColor = '#' + currentColor;
 //   pElem.style.fontFamily = currentFont;
@@ -66,3 +71,4 @@ function setProject() {
 // bgcolorForm.onchange = populateStorage;
 // fontForm.onchange = populateStorage;
 // imageForm.onchange = populateStorage;
+

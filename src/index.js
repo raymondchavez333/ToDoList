@@ -10,15 +10,18 @@ import { deleterProj } from "./deleteProject.js";
 import { parse, getDate, getMonth, getYear } from "date-fns";
 
 
-let projectTotal = projects();
+// let projectTotal = projects();
 
 const defaultProj = proj("Default");
 const defaultToDo = ToDo("Default", "hahaha", "March 3, 2027", "high");
+const defaultToDo1 = ToDo("Default1", "hahaha1", "March 3, 2027", "high");
 defaultProj.addTodos({title: defaultToDo.getTitle(), description: defaultToDo.getDescription(), dueDate: defaultToDo.getDueDate(), priority: defaultToDo.getPriority(), status: defaultToDo.getStatus()});
-projectTotal.addProject(defaultProj);
+defaultProj.addTodos({title: defaultToDo1.getTitle(), description: defaultToDo1.getDescription(), dueDate: defaultToDo1.getDueDate(), priority: defaultToDo1.getPriority(), status: defaultToDo1.getStatus()});
 
-console.log(JSON.parse(localStorage.getItem("Default")));
-console.log(projectTotal);
+// projectTotal.addProject(defaultProj);
+console.log(defaultProj.getTodos());
+// console.log(JSON.parse(localStorage.getItem("Default")));
+// console.log(projectTotal);
 // console.log(projectTotal.getProjects()[0].getTodos()[0].getTitle());
 
 

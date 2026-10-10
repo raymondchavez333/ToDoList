@@ -14,7 +14,26 @@ function createProject (name){
     // const getTodos = () => todos;
     const getTodos = () => JSON.parse(localStorage.getItem(`Project: ${name}`));
 
-    return {getName, addTodos, getTodos};
+    const modifyArray = (todo) => {
+        
+        // let newTodos = todos.filter((item) => item.title !== todo);
+        let newTodos = todos.map(item => {
+            if(item.title === todo.title){
+                return todo;
+            }
+            else{
+                return item;
+            }
+        });
+
+        todos = newTodos;
+        localStorage.setItem(`Project: ${name}`, JSON.stringify(todos));
+       
+    }
+
+    const getArrayTodos = () => todos;
+
+    return {getName, addTodos, getTodos, modifyArray, getArrayTodos};
     // return {getName, addTodos};
 }
     

@@ -10,7 +10,12 @@ function createToDO(title, description, dueDate, priority) {
     const setStatus = () => status === "unchecked" ? status = "checked" : status = "unchecked";
     const setPriority = (option) => priority = option;
 
-    return {getTitle, getDescription, getDueDate, getPriority, getStatus, setStatus, setPriority};
+    const getFullDetails = () => {
+        return {title, description, dueDate, priority, status};
+    };
+    
+
+    return {getTitle, getDescription, getDueDate, getPriority, getStatus, setStatus, setPriority, getFullDetails};
 }
 
 

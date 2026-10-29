@@ -56,6 +56,7 @@ let changePrio = JSON.parse(localStorage.getItem("Project: Default"));
 // Solution 2 (Changing prio)
 
 let defaultToDoChanged = ToDo("Default", "hahaha", "March 3, 2027", "medium");
+defaultToDoChanged.setStatus();
 console.log(defaultToDoChanged.getFullDetails());
 defaultProj.modifyArray(defaultToDoChanged.getFullDetails());
 console.log(defaultProj.getArrayTodos());

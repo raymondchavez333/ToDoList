@@ -4,6 +4,8 @@ function createProject (name){
 
     let todos = [];
 
+    localStorage.setItem(`Project: ${name}`, JSON.stringify(todos));
+
     function addToArray(todo){
         todos.push(todo);
         return todos;

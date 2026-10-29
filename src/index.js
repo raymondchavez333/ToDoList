@@ -30,6 +30,9 @@ defaultProj2.addTodos({title: defaultToDo3.getTitle(), description: defaultToDo3
 
 // console.log(defaultProj2.getTodos());
 
+let defaultProj3 = proj("Third");
+let defaultProj4 = proj("Fourth");
+
 // Edit the priority status 
 // Solution 1 (changing prio)
 function change(object, option){

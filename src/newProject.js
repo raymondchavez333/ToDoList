@@ -35,7 +35,16 @@ function createProject (name){
 
     const getArrayTodos = () => todos;
 
-    return {getName, addTodos, getTodos, modifyArray, getArrayTodos};
+    const deleteTodo = (todo) => {
+        
+        let newTodos = todos.filter((item) => item.title !== todo.title);
+
+        todos = newTodos;
+        localStorage.setItem(`Project: ${name}`, JSON.stringify(todos));
+       
+    }
+
+    return {getName, addTodos, getTodos, modifyArray, getArrayTodos,deleteTodo};
     // return {getName, addTodos};
 }
     

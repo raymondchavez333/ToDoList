@@ -7,7 +7,7 @@ import { Priority } from "./changePriority.js";
 import { deleter } from "./deleteTodo.js";
 import { projects } from "./allProjects.js";
 import { deleterProj } from "./deleteProject.js";
-import { parse, getDate, getMonth, getYear } from "date-fns";
+import { format, parse, getDate, getMonth, getYear } from "date-fns";
 
 
 // let projectTotal = projects();
@@ -78,6 +78,9 @@ deleterProj(defaultProj4);
 // let result = parse('02/11/2014', 'MM/dd/yyyy', new Date());
 
 // console.log(result);
+
+const result = format(new Date(2014, 1, 11), 'MMMM dd, yyyy');
+console.log(result);
 
 // console.log(getDate(result));
 // console.log(getMonth(result));

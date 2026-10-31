@@ -1,7 +1,8 @@
-function deleteProject (total,project){
+function deleteProject (project){
     // projects.getProjects().pop();
     // return object.getProjects();
-    total.getProjects().splice(project,1);
+    localStorage.removeItem(`Project: ${project.getName()}`);
+    console.log(project.getName());
 }
 
 export const deleterProj = deleteProject;

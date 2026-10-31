@@ -62,6 +62,8 @@ defaultProj.modifyArray(defaultToDoChanged.getFullDetails());
 console.log(defaultProj.getArrayTodos());
 
 defaultProj.deleteTodo({title: "Default1"});
+deleterProj(defaultProj4);
+
 
 // defaultProj.addTodos({title: defaultToDoChanged.getTitle(), description: defaultToDoChanged.getDescription(), dueDate: defaultToDoChanged.getDueDate(), priority: defaultToDoChanged.getPriority(), status: defaultToDoChanged.getStatus()});
 // console.log(defaultProj.getArrayTodos());

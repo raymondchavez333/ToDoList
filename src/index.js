@@ -128,3 +128,5 @@ function setProject() {
 // fontForm.onchange = populateStorage;
 // imageForm.onchange = populateStorage;
 
+let projectName = document.querySelector(".sidebar2");
+projectName.textContent = `${defaultProj.getName()}`;

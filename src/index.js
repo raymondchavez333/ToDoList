@@ -12,40 +12,61 @@ import { format, parse, getDate, getMonth, getYear } from "date-fns";
 
 // let projectTotal = projects();
 
-let defaultProj = proj("Default");
-let defaultToDo = ToDo("Default", "hahaha", "March 3, 2027", "high");
-let defaultToDo1 = ToDo("Default1", "hahaha1", "March 3, 2027", "high");
-defaultProj.addTodos({title: defaultToDo.getTitle(), description: defaultToDo.getDescription(), dueDate: defaultToDo.getDueDate(), priority: defaultToDo.getPriority(), status: defaultToDo.getStatus()});
-defaultProj.addTodos({title: defaultToDo1.getTitle(), description: defaultToDo1.getDescription(), dueDate: defaultToDo1.getDueDate(), priority: defaultToDo1.getPriority(), status: defaultToDo1.getStatus()});
+// if (!localStorage.getItem("")) {
+//   populateStorage();
+// } else {
+//   setStyles();
+// }
 
-// projectTotal.addProject(defaultProj);
-console.log(defaultProj.getTodos());
+function firstLoading(){
 
+  let defaultProj = proj("Default");
+  let defaultToDo = ToDo("Default", "hahaha", "March 3, 2027", "high");
+  // let defaultToDo1 = ToDo("Default1", "hahaha1", "March 3, 2027", "high");
+  defaultProj.addTodos({title: defaultToDo.getTitle(), description: defaultToDo.getDescription(), dueDate: defaultToDo.getDueDate(), priority: defaultToDo.getPriority(), status: defaultToDo.getStatus()});
+  // defaultProj.addTodos({title: defaultToDo1.getTitle(), description: defaultToDo1.getDescription(), dueDate: defaultToDo1.getDueDate(), priority: defaultToDo1.getPriority(), status: defaultToDo1.getStatus()});
 
-let defaultProj2 = proj("Second");
-let defaultToDo2 = ToDo("Default", "hahaha", "March 3, 2027", "high");
-let defaultToDo3 = ToDo("Default2", "hahaha1", "March 3, 2027", "high");
-defaultProj2.addTodos({title: defaultToDo2.getTitle(), description: defaultToDo2.getDescription(), dueDate: defaultToDo2.getDueDate(), priority: defaultToDo2.getPriority(), status: defaultToDo2.getStatus()});
-defaultProj2.addTodos({title: defaultToDo3.getTitle(), description: defaultToDo3.getDescription(), dueDate: defaultToDo3.getDueDate(), priority: defaultToDo3.getPriority(), status: defaultToDo3.getStatus()});
+  // projectTotal.addProject(defaultProj);
+  console.log(defaultProj.getTodos());
+
+  
+  let projectName = document.querySelector(".sidebar2");
+  projectName.textContent = `${defaultProj.getName()}`;
+  let defaultShow = JSON.parse(localStorage.getItem(`Project: ${defaultProj.getName()}`));
+  console.log(defaultShow);
+
+  let projectLists = document.querySelector(".sidebar5");
+  let defaultDiv = document.createElement("div");
+  defaultDiv.textContent = `${defaultProj.getName()}`;
+  projectLists.appendChild(defaultDiv);
+}
+
+firstLoading();
+
+// let defaultProj2 = proj("Second");
+// let defaultToDo2 = ToDo("Default", "hahaha", "March 3, 2027", "high");
+// let defaultToDo3 = ToDo("Default2", "hahaha1", "March 3, 2027", "high");
+// defaultProj2.addTodos({title: defaultToDo2.getTitle(), description: defaultToDo2.getDescription(), dueDate: defaultToDo2.getDueDate(), priority: defaultToDo2.getPriority(), status: defaultToDo2.getStatus()});
+// defaultProj2.addTodos({title: defaultToDo3.getTitle(), description: defaultToDo3.getDescription(), dueDate: defaultToDo3.getDueDate(), priority: defaultToDo3.getPriority(), status: defaultToDo3.getStatus()});
 
 // console.log(defaultProj2.getTodos());
 
-let defaultProj3 = proj("Third");
-let defaultProj4 = proj("Fourth");
+// let defaultProj3 = proj("Third");
+// let defaultProj4 = proj("Fourth");
 
 // Edit the priority status 
 // Solution 1 (changing prio)
-function change(object, option){
-  // accepts {title: 'Default', description: 'hahaha', dueDate: 'March 3, 2027', priority: 'high', status: 'unchecked'};
-  let title1 = object.title;
-  let description1 = object.description;
-  let dueDate1 = object.dueDate;
-  let priority1 = object.priority;
-  let status1 = object.status;
-  // localStorage.setItem("Project: Default", JSON.stringify({title: `${title1}`, description: `${description1}`, dueDate: `${dueDate1}`, priority: `${option}`, status: `${status1}`}));
-  return {title: `${title1}`, description: `${description1}`, dueDate: `${dueDate1}`, priority: `${option}`, status: `${status1}`};
-}
-let changePrio = JSON.parse(localStorage.getItem("Project: Default"));
+// function change(object, option){
+//   // accepts {title: 'Default', description: 'hahaha', dueDate: 'March 3, 2027', priority: 'high', status: 'unchecked'};
+//   let title1 = object.title;
+//   let description1 = object.description;
+//   let dueDate1 = object.dueDate;
+//   let priority1 = object.priority;
+//   let status1 = object.status;
+//   // localStorage.setItem("Project: Default", JSON.stringify({title: `${title1}`, description: `${description1}`, dueDate: `${dueDate1}`, priority: `${option}`, status: `${status1}`}));
+//   return {title: `${title1}`, description: `${description1}`, dueDate: `${dueDate1}`, priority: `${option}`, status: `${status1}`};
+// }
+// let changePrio = JSON.parse(localStorage.getItem("Project: Default"));
 // console.log(changePrio[0]);
 // console.log((change(changePrio[0], "medium")));
 // localStorage.removeItem("Project: Default");
@@ -55,14 +76,14 @@ let changePrio = JSON.parse(localStorage.getItem("Project: Default"));
 
 // Solution 2 (Changing prio)
 
-let defaultToDoChanged = ToDo("Default", "hahaha", "March 3, 2027", "medium");
-defaultToDoChanged.setStatus();
-console.log(defaultToDoChanged.getFullDetails());
-defaultProj.modifyArray(defaultToDoChanged.getFullDetails());
-console.log(defaultProj.getArrayTodos());
+// let defaultToDoChanged = ToDo("Default", "hahaha", "March 3, 2027", "medium");
+// defaultToDoChanged.setStatus();
+// console.log(defaultToDoChanged.getFullDetails());
+// defaultProj.modifyArray(defaultToDoChanged.getFullDetails());
+// console.log(defaultProj.getArrayTodos());
 
-defaultProj.deleteTodo({title: "Default1"});
-deleterProj(defaultProj4);
+// defaultProj.deleteTodo({title: "Default1"});
+// deleterProj(defaultProj4);
 
 
 // defaultProj.addTodos({title: defaultToDoChanged.getTitle(), description: defaultToDoChanged.getDescription(), dueDate: defaultToDoChanged.getDueDate(), priority: defaultToDoChanged.getPriority(), status: defaultToDoChanged.getStatus()});
@@ -106,8 +127,8 @@ console.log(result);
 //   setProject();
 // }
 
-function setProject() {
-  let currentProj = localStorage.getItem('project');
+// function setProject() {
+//   let currentProj = localStorage.getItem('project');
 //   var currentFont = localStorage.getItem('font');
 //   var currentImage = localStorage.getItem('image');
 
@@ -115,18 +136,15 @@ function setProject() {
 //   document.getElementById('font').value = currentFont;
 //   document.getElementById('image').value = currentImage;
 
-  // console.log(JSON.parse(currentProj));
+//   console.log(JSON.parse(currentProj));
 
 // document.querySelector(".sidebar2").textContent = currentProj;  
 
 //   htmlElem.style.backgroundColor = '#' + currentColor;
 //   pElem.style.fontFamily = currentFont;
 //   imgElem.setAttribute('src', currentImage);
-}
+// }
 
 // bgcolorForm.onchange = populateStorage;
 // fontForm.onchange = populateStorage;
 // imageForm.onchange = populateStorage;
-
-let projectName = document.querySelector(".sidebar2");
-projectName.textContent = `${defaultProj.getName()}`;

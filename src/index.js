@@ -21,7 +21,7 @@ import { format, parse, getDate, getMonth, getYear } from "date-fns";
 function firstLoading(){
 
   let defaultProj = proj("Default");
-  let defaultToDo = ToDo("Default", "hahaha", "March 3, 2027", "high");
+  let defaultToDo = ToDo("Demo Todo", "hahaha", "March 3, 2027", "high");
   // let defaultToDo1 = ToDo("Default1", "hahaha1", "March 3, 2027", "high");
   defaultProj.addTodos({title: defaultToDo.getTitle(), description: defaultToDo.getDescription(), dueDate: defaultToDo.getDueDate(), priority: defaultToDo.getPriority(), status: defaultToDo.getStatus()});
   // defaultProj.addTodos({title: defaultToDo1.getTitle(), description: defaultToDo1.getDescription(), dueDate: defaultToDo1.getDueDate(), priority: defaultToDo1.getPriority(), status: defaultToDo1.getStatus()});
@@ -39,6 +39,11 @@ function firstLoading(){
   let defaultDiv = document.createElement("div");
   defaultDiv.textContent = `${defaultProj.getName()}`;
   projectLists.appendChild(defaultDiv);
+
+  let todoLists = document.querySelector(".mainBottom");
+  let demoDiv = document.createElement("div");
+  demoDiv.textContent = `${defaultToDo.getTitle()}`;
+  todoLists.appendChild(demoDiv);
 }
 
 firstLoading();

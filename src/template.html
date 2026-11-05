@@ -23,7 +23,20 @@
             <div class="projects">
                 <div class="sidebar1">Projects</div>
                 <div class="sidebar2">Name of the Project</div>
-                <button class="sidebar3">New Project</button>
+                <dialog id="favDialog">
+                    <form>
+                        <h1>New Project</h1>
+                        <p>
+                            <label for="title">Title</label>
+                            <input type="text" id="title" name="title">
+                        </p>
+                        <div>
+                            <button value="cancel" formmethod="dialog">Cancel</button>
+                            <button id="confirmBtn" value="default">Confirm</button>
+                        </div>
+                    </form>
+                </dialog>
+                <button class="sidebar3" id="createProject">New Project</button>
                 <div class="sidebar4">Project List</div>
                 <div class="sidebar5"></div>
                 

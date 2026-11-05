@@ -48,6 +48,24 @@ function firstLoading(){
 
 firstLoading();
 
+const favDialog = document.getElementById("favDialog");
+const confirmBtn = favDialog.querySelector("#confirmBtn");
+const form = document.querySelector("form");
+let createProject = document.getElementById("createProject");
+
+createProject.addEventListener("click", () => {
+  favDialog.showModal();
+});
+confirmBtn.addEventListener("click", (event) => {
+  const data = new FormData(form);
+  for (const pair of data.entries()) {
+  console.log(pair[0], pair[1]);
+}
+  event.preventDefault(); 
+  favDialog.close(); 
+});
+
+
 // let defaultProj2 = proj("Second");
 // let defaultToDo2 = ToDo("Default", "hahaha", "March 3, 2027", "high");
 // let defaultToDo3 = ToDo("Default2", "hahaha1", "March 3, 2027", "high");

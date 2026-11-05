@@ -17,6 +17,7 @@ import { format, parse, getDate, getMonth, getYear } from "date-fns";
 // } else {
 //   setStyles();
 // }
+let projectLists = document.querySelector(".sidebar5");
 
 function firstLoading(){
 
@@ -35,7 +36,7 @@ function firstLoading(){
   let defaultShow = JSON.parse(localStorage.getItem(`Project: ${defaultProj.getName()}`));
   console.log(defaultShow);
 
-  let projectLists = document.querySelector(".sidebar5");
+  // let projectLists = document.querySelector(".sidebar5");
   let defaultDiv = document.createElement("div");
   defaultDiv.textContent = `${defaultProj.getName()}`;
   projectLists.appendChild(defaultDiv);
@@ -52,15 +53,24 @@ const favDialog = document.getElementById("favDialog");
 const confirmBtn = favDialog.querySelector("#confirmBtn");
 const form = document.querySelector("form");
 let createProject = document.getElementById("createProject");
+const title = document.getElementById("title");
 
 createProject.addEventListener("click", () => {
   favDialog.showModal();
 });
+
 confirmBtn.addEventListener("click", (event) => {
   const data = new FormData(form);
   for (const pair of data.entries()) {
   console.log(pair[0], pair[1]);
-}
+  }
+  console.log(title.value);
+  let newProj = proj(title.value);
+  console.log(newProj.getName());
+  let newProjDiv = document.createElement("div");
+  newProjDiv.textContent = `${newProj.getName()}`;
+  projectLists.appendChild(newProjDiv);
+
   event.preventDefault(); 
   favDialog.close(); 
 });

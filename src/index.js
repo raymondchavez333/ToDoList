@@ -17,37 +17,83 @@ import { format, parse, getDate, getMonth, getYear } from "date-fns";
 // } else {
 //   setStyles();
 // }
+let projectsContainer = projects();
+
 let projectLists = document.querySelector(".sidebar5");
 
-function firstLoading(){
-
-  let defaultProj = proj("Default");
-  let defaultToDo = ToDo("Demo Todo", "hahaha", "March 3, 2027", "high");
-  // let defaultToDo1 = ToDo("Default1", "hahaha1", "March 3, 2027", "high");
-  defaultProj.addTodos({title: defaultToDo.getTitle(), description: defaultToDo.getDescription(), dueDate: defaultToDo.getDueDate(), priority: defaultToDo.getPriority(), status: defaultToDo.getStatus()});
-  // defaultProj.addTodos({title: defaultToDo1.getTitle(), description: defaultToDo1.getDescription(), dueDate: defaultToDo1.getDueDate(), priority: defaultToDo1.getPriority(), status: defaultToDo1.getStatus()});
-
-  // projectTotal.addProject(defaultProj);
-  console.log(defaultProj.getTodos());
-
-  
+if(!localStorage.length ){
+  populateStorage();
+}else{
+  set();
+}
+function populateStorage(){
   let projectName = document.querySelector(".sidebar2");
-  projectName.textContent = `${defaultProj.getName()}`;
-  let defaultShow = JSON.parse(localStorage.getItem(`Project: ${defaultProj.getName()}`));
-  console.log(defaultShow);
-
   // let projectLists = document.querySelector(".sidebar5");
-  let defaultDiv = document.createElement("div");
-  defaultDiv.textContent = `${defaultProj.getName()}`;
-  projectLists.appendChild(defaultDiv);
+  if(!localStorage.getItem("Project: Default")){
+    let defaultProj = proj("Default");
+    projectsContainer.addProject(defaultProj.getName());
+    console.log(projectsContainer.getProjects());
+    let defaultToDo = ToDo("Demo Todo", "hahaha", "March 3, 2027", "high");
+    // let defaultToDo1 = ToDo("Default1", "hahaha1", "March 3, 2027", "high");
+    defaultProj.addTodos({title: defaultToDo.getTitle(), description: defaultToDo.getDescription(), dueDate: defaultToDo.getDueDate(), priority: defaultToDo.getPriority(), status: defaultToDo.getStatus()});
+    // defaultProj.addTodos({title: defaultToDo1.getTitle(), description: defaultToDo1.getDescription(), dueDate: defaultToDo1.getDueDate(), priority: defaultToDo1.getPriority(), status: defaultToDo1.getStatus()});
 
-  let todoLists = document.querySelector(".mainBottom");
-  let demoDiv = document.createElement("div");
-  demoDiv.textContent = `${defaultToDo.getTitle()}`;
-  todoLists.appendChild(demoDiv);
+    // projectTotal.addProject(defaultProj);
+    // let projectName = document.querySelector(".sidebar2");
+    console.log(defaultProj.getTodos());
+    projectName.textContent = `${defaultProj.getName()}`;
+    // let defaultShow = JSON.parse(localStorage.getItem(`Project: ${defaultProj.getName()}`));
+    // console.log(defaultShow);
+
+    // let projectLists = document.querySelector(".sidebar5");
+    // let defaultDiv = document.createElement("div");
+    // defaultDiv.textContent = `${projectsContainer.getProjects()}`;
+    // projectLists.appendChild(defaultDiv);
+
+    let todoLists = document.querySelector(".mainBottom");
+    let demoDiv = document.createElement("div");
+    demoDiv.textContent = `${defaultToDo.getTitle()}`;
+    todoLists.appendChild(demoDiv);
+
+    console.log(projectName.textContent);
+
+    localStorage.setItem("activeProject", projectName.textContent);
+    localStorage.setItem("activeProjectList", JSON.stringify(projectsContainer.getProjects()));
+    localStorage.setItem("activeTodoList", JSON.stringify(defaultProj.getTodos()));
+
+    set();
+  }else{
+    // localStorage.setItem("activeProject", projectName.textContent);
+    
+  localStorage.setItem("activeProjectList", JSON.stringify(projectsContainer.getProjects()));
+  // localStorage.setItem("activeTodoList", JSON.stringify(.getTodos()));
+  set();
+  }
+  
 }
 
-firstLoading();
+function set(){
+  projectsContainer.modifyProjects(JSON.parse(localStorage.getItem("activeProjectList")));
+  const currentProject = localStorage.getItem("activeProject");
+  const currentProjectList = localStorage.getItem("activeProjectList");
+  const currentTodoList = localStorage.getItem("activeTodoList");
+
+  document.querySelector(".sidebar2").textContent= `${currentProject}`;
+  const currentProjectListParsed = JSON.parse(currentProjectList);
+  currentProjectListParsed.forEach((item) => {
+    const divProjectList = document.createElement("div");
+    divProjectList.classList.add("projectItems");
+    divProjectList.textContent = `${item}`;
+    projectLists.appendChild(divProjectList);
+    console.log(item);
+  });
+
+  console.log(projectsContainer.getProjects());
+
+  // const todoList = JSON.parse(currentTodoList).map(item => item.title);
+  // const alltodo = document.createElement()
+
+}
 
 const favDialog = document.getElementById("favDialog");
 const confirmBtn = favDialog.querySelector("#confirmBtn");
@@ -60,21 +106,30 @@ createProject.addEventListener("click", () => {
 });
 
 confirmBtn.addEventListener("click", (event) => {
+  const projectItemsDom = document.querySelectorAll(".projectItems");
+  projectItemsDom.forEach((item) =>{
+  // projectLists.removeChild(item);
+  item.remove();
+  });
+  
   const data = new FormData(form);
   for (const pair of data.entries()) {
   console.log(pair[0], pair[1]);
   }
   console.log(title.value);
-  let newProj = proj(title.value);
+  const newProj = proj(title.value);
   console.log(newProj.getName());
-  let newProjDiv = document.createElement("div");
-  newProjDiv.textContent = `${newProj.getName()}`;
-  projectLists.appendChild(newProjDiv);
-
+  // const newProjDiv = document.createElement("div");
+  // newProjDiv.textContent = `${newProj.getName()}`;
+  // projectLists.appendChild(newProjDiv);
+  projectsContainer.addProject(newProj.getName());
+  populateStorage();
   event.preventDefault(); 
   favDialog.close(); 
+  console.log(projectsContainer.getProjects());
 });
 
+console.log(!localStorage.getItem("Project: Hello"));
 
 // let defaultProj2 = proj("Second");
 // let defaultToDo2 = ToDo("Default", "hahaha", "March 3, 2027", "high");
@@ -148,36 +203,3 @@ console.log(result);
 // let existingProjects = projectTotal.getProjects().map(item => item.getName());
 // projectList.textContent = existingProjects;
 
-// if (!localStorage.getItem("project")) {
-//   populateStorage();
-// } else {
-//   setProject();
-// }
-
-// function populateStorage() {
-//   localStorage.setItem('project', JSON.stringify(projectTotal.getProjects()));
-
-//   setProject();
-// }
-
-// function setProject() {
-//   let currentProj = localStorage.getItem('project');
-//   var currentFont = localStorage.getItem('font');
-//   var currentImage = localStorage.getItem('image');
-
-//   document.getElementById('bgcolor').value = currentColor;
-//   document.getElementById('font').value = currentFont;
-//   document.getElementById('image').value = currentImage;
-
-//   console.log(JSON.parse(currentProj));
-
-// document.querySelector(".sidebar2").textContent = currentProj;  
-
-//   htmlElem.style.backgroundColor = '#' + currentColor;
-//   pElem.style.fontFamily = currentFont;
-//   imgElem.setAttribute('src', currentImage);
-// }
-
-// bgcolorForm.onchange = populateStorage;
-// fontForm.onchange = populateStorage;
-// imageForm.onchange = populateStorage;

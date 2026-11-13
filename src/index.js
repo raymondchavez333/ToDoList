@@ -20,6 +20,7 @@ import { format, parse, getDate, getMonth, getYear } from "date-fns";
 let projectsContainer = projects();
 
 let projectLists = document.querySelector(".sidebar5");
+let projectName = document.querySelector(".sidebar2");
 
 if(!localStorage.length ){
   populateStorage();
@@ -27,7 +28,7 @@ if(!localStorage.length ){
   set();
 }
 function populateStorage(){
-  let projectName = document.querySelector(".sidebar2");
+  
   // let projectLists = document.querySelector(".sidebar5");
   if(!localStorage.getItem("Project: Default")){
     let defaultProj = proj("Default");
@@ -66,6 +67,7 @@ function populateStorage(){
     // localStorage.setItem("activeProject", projectName.textContent);
     
   localStorage.setItem("activeProjectList", JSON.stringify(projectsContainer.getProjects()));
+  localStorage.setItem("activeProject", projectName.textContent);
   // localStorage.setItem("activeTodoList", JSON.stringify(.getTodos()));
   set();
   }
@@ -111,7 +113,7 @@ confirmBtn.addEventListener("click", (event) => {
   // projectLists.removeChild(item);
   item.remove();
   });
-  
+
   const data = new FormData(form);
   for (const pair of data.entries()) {
   console.log(pair[0], pair[1]);
@@ -123,6 +125,8 @@ confirmBtn.addEventListener("click", (event) => {
   // newProjDiv.textContent = `${newProj.getName()}`;
   // projectLists.appendChild(newProjDiv);
   projectsContainer.addProject(newProj.getName());
+  projectName.textContent = `${newProj.getName()}`;
+
   populateStorage();
   event.preventDefault(); 
   favDialog.close(); 

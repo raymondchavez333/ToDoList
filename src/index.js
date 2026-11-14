@@ -21,6 +21,7 @@ let projectsContainer = projects();
 
 let projectLists = document.querySelector(".sidebar5");
 let projectName = document.querySelector(".sidebar2");
+let todoLists = document.querySelector(".mainBottom");
 
 if(!localStorage.length ){
   populateStorage();
@@ -35,9 +36,9 @@ function populateStorage(){
     projectsContainer.addProject(defaultProj.getName());
     console.log(projectsContainer.getProjects());
     let defaultToDo = ToDo("Demo Todo", "hahaha", "March 3, 2027", "high");
-    // let defaultToDo1 = ToDo("Default1", "hahaha1", "March 3, 2027", "high");
+    let defaultToDo1 = ToDo("Default1", "hahaha1", "March 3, 2027", "high");
     defaultProj.addTodos({title: defaultToDo.getTitle(), description: defaultToDo.getDescription(), dueDate: defaultToDo.getDueDate(), priority: defaultToDo.getPriority(), status: defaultToDo.getStatus()});
-    // defaultProj.addTodos({title: defaultToDo1.getTitle(), description: defaultToDo1.getDescription(), dueDate: defaultToDo1.getDueDate(), priority: defaultToDo1.getPriority(), status: defaultToDo1.getStatus()});
+    defaultProj.addTodos({title: defaultToDo1.getTitle(), description: defaultToDo1.getDescription(), dueDate: defaultToDo1.getDueDate(), priority: defaultToDo1.getPriority(), status: defaultToDo1.getStatus()});
 
     // projectTotal.addProject(defaultProj);
     // let projectName = document.querySelector(".sidebar2");
@@ -51,10 +52,9 @@ function populateStorage(){
     // defaultDiv.textContent = `${projectsContainer.getProjects()}`;
     // projectLists.appendChild(defaultDiv);
 
-    let todoLists = document.querySelector(".mainBottom");
-    let demoDiv = document.createElement("div");
-    demoDiv.textContent = `${defaultToDo.getTitle()}`;
-    todoLists.appendChild(demoDiv);
+    // let demoDiv = document.createElement("div");
+    // demoDiv.textContent = `${defaultToDo.getTitle()}`;
+    // todoLists.appendChild(demoDiv);
 
     console.log(projectName.textContent);
 
@@ -91,6 +91,16 @@ function set(){
   });
 
   console.log(projectsContainer.getProjects());
+  
+  const currentTodoListParsed = JSON.parse(currentTodoList);
+  currentTodoListParsed.forEach((item) => {
+    const divTodoList = document.createElement("div");
+    divTodoList.classList.add("todoItems");
+    divTodoList.textContent = `${item.title}`;
+    todoLists.appendChild(divTodoList);
+    console.log(item.title);
+  });
+
 
   // const todoList = JSON.parse(currentTodoList).map(item => item.title);
   // const alltodo = document.createElement()

@@ -68,7 +68,9 @@ function populateStorage(){
     
   localStorage.setItem("activeProjectList", JSON.stringify(projectsContainer.getProjects()));
   localStorage.setItem("activeProject", projectName.textContent);
-  // localStorage.setItem("activeTodoList", JSON.stringify(.getTodos()));
+  const projTodos = JSON.parse(localStorage.getItem(`Project: ${projectName.textContent}`));
+  console.log(projTodos);
+  localStorage.setItem("activeTodoList", JSON.stringify(projTodos));
   set();
   }
   
@@ -124,6 +126,11 @@ confirmBtn.addEventListener("click", (event) => {
   item.remove();
   });
 
+  const todoItemsDom = document.querySelectorAll(".todoItems");
+  todoItemsDom.forEach((item) =>{
+  item.remove();
+  });
+  
   const data = new FormData(form);
   for (const pair of data.entries()) {
   console.log(pair[0], pair[1]);

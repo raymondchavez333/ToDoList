@@ -100,3 +100,8 @@ button {
 .sidebar5 {
     width: 290px;
 }
+
+.projectItems {
+    display: grid;
+    grid-template-columns: 90px 90px 90px;
+}

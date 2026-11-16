@@ -87,10 +87,37 @@ function set(){
   currentProjectListParsed.forEach((item) => {
     const divProjectList = document.createElement("div");
     divProjectList.classList.add("projectItems");
-    divProjectList.textContent = `${item}`;
+    const divProjectName = document.createElement("div");
+    divProjectName.textContent = `${item}`;
+    divProjectList.appendChild(divProjectName);
+    const openButton = document.createElement("button");
+    openButton.textContent = "Open";
+    openButton.setAttribute("id", "openProject");
+    divProjectList.appendChild(openButton);
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+    deleteButton.setAttribute("id", "deleteProject");
+    divProjectList.appendChild(deleteButton);
+    // divProjectList.textContent = `${item}`;
+    openButton.addEventListener("click", () => {
+      localStorage.setItem("activeProject", `${item}`);
+      projectName.textContent = `${item}`;
+      const projectItemsDom = document.querySelectorAll(".projectItems");
+      projectItemsDom.forEach((item) =>{
+      // projectLists.removeChild(item);
+      item.remove();
+      });
+
+      const todoItemsDom = document.querySelectorAll(".todoItems");
+      todoItemsDom.forEach((item) =>{
+      item.remove();
+      });
+      populateStorage();
+    });
     projectLists.appendChild(divProjectList);
     console.log(item);
   });
+
 
   console.log(projectsContainer.getProjects());
   

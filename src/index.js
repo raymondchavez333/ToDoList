@@ -24,15 +24,15 @@ let projectName = document.querySelector(".sidebar2");
 let todoLists = document.querySelector(".mainBottom");
 
 if(!localStorage.length ){
+  firstDefault()
   populateStorage();
 }else{
   set();
 }
-function populateStorage(){
-  
-  // let projectLists = document.querySelector(".sidebar5");
-  if(!localStorage.getItem("Project: Default")){
-    let defaultProj = proj("Default");
+
+function firstDefault (){
+  let defaultProj = proj("Default");
+    // console.log(defaultProj.getId());
     projectsContainer.addProject(defaultProj.getName());
     console.log(projectsContainer.getProjects());
     let defaultToDo = ToDo("Demo Todo", "hahaha", "March 3, 2027", "high");
@@ -61,10 +61,57 @@ function populateStorage(){
     localStorage.setItem("activeProject", projectName.textContent);
     localStorage.setItem("activeProjectList", JSON.stringify(projectsContainer.getProjects()));
     localStorage.setItem("activeTodoList", JSON.stringify(defaultProj.getTodos()));
+}
+// function populateStorage(){
+  
+//   // let projectLists = document.querySelector(".sidebar5");
+//   if(!localStorage.getItem("Project: Default")){
+//     let defaultProj = proj("Default");
+//     // console.log(defaultProj.getId());
+//     projectsContainer.addProject(defaultProj.getName());
+//     console.log(projectsContainer.getProjects());
+//     let defaultToDo = ToDo("Demo Todo", "hahaha", "March 3, 2027", "high");
+//     let defaultToDo1 = ToDo("Default1", "hahaha1", "March 3, 2027", "high");
+//     defaultProj.addTodos({title: defaultToDo.getTitle(), description: defaultToDo.getDescription(), dueDate: defaultToDo.getDueDate(), priority: defaultToDo.getPriority(), status: defaultToDo.getStatus()});
+//     defaultProj.addTodos({title: defaultToDo1.getTitle(), description: defaultToDo1.getDescription(), dueDate: defaultToDo1.getDueDate(), priority: defaultToDo1.getPriority(), status: defaultToDo1.getStatus()});
 
-    set();
-  }else{
-    // localStorage.setItem("activeProject", projectName.textContent);
+//     // projectTotal.addProject(defaultProj);
+//     // let projectName = document.querySelector(".sidebar2");
+//     console.log(defaultProj.getTodos());
+//     projectName.textContent = `${defaultProj.getName()}`;
+//     // let defaultShow = JSON.parse(localStorage.getItem(`Project: ${defaultProj.getName()}`));
+//     // console.log(defaultShow);
+
+//     // let projectLists = document.querySelector(".sidebar5");
+//     // let defaultDiv = document.createElement("div");
+//     // defaultDiv.textContent = `${projectsContainer.getProjects()}`;
+//     // projectLists.appendChild(defaultDiv);
+
+//     // let demoDiv = document.createElement("div");
+//     // demoDiv.textContent = `${defaultToDo.getTitle()}`;
+//     // todoLists.appendChild(demoDiv);
+
+//     console.log(projectName.textContent);
+
+//     localStorage.setItem("activeProject", projectName.textContent);
+//     localStorage.setItem("activeProjectList", JSON.stringify(projectsContainer.getProjects()));
+//     localStorage.setItem("activeTodoList", JSON.stringify(defaultProj.getTodos()));
+
+//     set();
+//   }else{
+//     // localStorage.setItem("activeProject", projectName.textContent);
+    
+//   localStorage.setItem("activeProjectList", JSON.stringify(projectsContainer.getProjects()));
+//   localStorage.setItem("activeProject", projectName.textContent);
+//   const projTodos = JSON.parse(localStorage.getItem(`Project: ${projectName.textContent}`));
+//   console.log(projTodos);
+//   localStorage.setItem("activeTodoList", JSON.stringify(projTodos));
+//   set();
+//   }
+
+// }
+
+function populateStorage(){
     
   localStorage.setItem("activeProjectList", JSON.stringify(projectsContainer.getProjects()));
   localStorage.setItem("activeProject", projectName.textContent);
@@ -72,8 +119,8 @@ function populateStorage(){
   console.log(projTodos);
   localStorage.setItem("activeTodoList", JSON.stringify(projTodos));
   set();
-  }
   
+
 }
 
 function set(){
@@ -87,6 +134,7 @@ function set(){
   currentProjectListParsed.forEach((item) => {
     const divProjectList = document.createElement("div");
     divProjectList.classList.add("projectItems");
+    // divProjectList.setAttribute("data-id", )
     const divProjectName = document.createElement("div");
     divProjectName.textContent = `${item}`;
     divProjectList.appendChild(divProjectName);
@@ -99,6 +147,7 @@ function set(){
     deleteButton.setAttribute("id", "deleteProject");
     divProjectList.appendChild(deleteButton);
     // divProjectList.textContent = `${item}`;
+
     openButton.addEventListener("click", () => {
       localStorage.setItem("activeProject", `${item}`);
       projectName.textContent = `${item}`;
@@ -114,6 +163,30 @@ function set(){
       });
       populateStorage();
     });
+
+    deleteButton.addEventListener("click", () => {
+      const newProjList = projectsContainer.getProjects().filter(projItem => {
+            return projItem !== item;
+        });
+      projectsContainer.modifyProjects(newProjList);
+      projectLists.removeChild(divProjectList);
+      console.log(projectsContainer.getProjects());
+
+      const projectItemsDom = document.querySelectorAll(".projectItems");
+      projectItemsDom.forEach((item) =>{
+      // projectLists.removeChild(item);
+      item.remove();
+      });
+
+      const todoItemsDom = document.querySelectorAll(".todoItems");
+      todoItemsDom.forEach((item) =>{
+      item.remove();
+      });
+
+      // localStorage.removeItem(`Project: ${item}`);
+      populateStorage();
+    });
+
     projectLists.appendChild(divProjectList);
     console.log(item);
   });

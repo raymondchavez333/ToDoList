@@ -4,6 +4,8 @@ function createProject (name){
 
     let todos = [];
 
+    const id = crypto.randomUUID();
+
     localStorage.setItem(`Project: ${name}`, JSON.stringify(todos));
 
     function addToArray(todo){
@@ -44,7 +46,9 @@ function createProject (name){
        
     }
 
-    return {getName, addTodos, getTodos, modifyArray, getArrayTodos,deleteTodo};
+    const getId = () => id;
+
+    return {getName, addTodos, getTodos, modifyArray, getArrayTodos,deleteTodo, getId};
     // return {getName, addTodos};
 }
     

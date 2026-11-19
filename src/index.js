@@ -10,13 +10,7 @@ import { deleterProj } from "./deleteProject.js";
 import { format, parse, getDate, getMonth, getYear } from "date-fns";
 
 
-// let projectTotal = projects();
 
-// if (!localStorage.getItem("")) {
-//   populateStorage();
-// } else {
-//   setStyles();
-// }
 let projectsContainer = projects();
 
 let projectLists = document.querySelector(".sidebar5");
@@ -66,54 +60,7 @@ function firstDefault (){
     localStorage.setItem("activeProjectList", JSON.stringify(projectsContainer.getProjects()));
     localStorage.setItem("activeTodoList", JSON.stringify(defaultProj.getTodos()));
 }
-// function populateStorage(){
-  
-//   // let projectLists = document.querySelector(".sidebar5");
-//   if(!localStorage.getItem("Project: Default")){
-//     let defaultProj = proj("Default");
-//     // console.log(defaultProj.getId());
-//     projectsContainer.addProject(defaultProj.getName());
-//     console.log(projectsContainer.getProjects());
-//     let defaultToDo = ToDo("Demo Todo", "hahaha", "March 3, 2027", "high");
-//     let defaultToDo1 = ToDo("Default1", "hahaha1", "March 3, 2027", "high");
-//     defaultProj.addTodos({title: defaultToDo.getTitle(), description: defaultToDo.getDescription(), dueDate: defaultToDo.getDueDate(), priority: defaultToDo.getPriority(), status: defaultToDo.getStatus()});
-//     defaultProj.addTodos({title: defaultToDo1.getTitle(), description: defaultToDo1.getDescription(), dueDate: defaultToDo1.getDueDate(), priority: defaultToDo1.getPriority(), status: defaultToDo1.getStatus()});
 
-//     // projectTotal.addProject(defaultProj);
-//     // let projectName = document.querySelector(".sidebar2");
-//     console.log(defaultProj.getTodos());
-//     projectName.textContent = `${defaultProj.getName()}`;
-//     // let defaultShow = JSON.parse(localStorage.getItem(`Project: ${defaultProj.getName()}`));
-//     // console.log(defaultShow);
-
-//     // let projectLists = document.querySelector(".sidebar5");
-//     // let defaultDiv = document.createElement("div");
-//     // defaultDiv.textContent = `${projectsContainer.getProjects()}`;
-//     // projectLists.appendChild(defaultDiv);
-
-//     // let demoDiv = document.createElement("div");
-//     // demoDiv.textContent = `${defaultToDo.getTitle()}`;
-//     // todoLists.appendChild(demoDiv);
-
-//     console.log(projectName.textContent);
-
-//     localStorage.setItem("activeProject", projectName.textContent);
-//     localStorage.setItem("activeProjectList", JSON.stringify(projectsContainer.getProjects()));
-//     localStorage.setItem("activeTodoList", JSON.stringify(defaultProj.getTodos()));
-
-//     set();
-//   }else{
-//     // localStorage.setItem("activeProject", projectName.textContent);
-    
-//   localStorage.setItem("activeProjectList", JSON.stringify(projectsContainer.getProjects()));
-//   localStorage.setItem("activeProject", projectName.textContent);
-//   const projTodos = JSON.parse(localStorage.getItem(`Project: ${projectName.textContent}`));
-//   console.log(projTodos);
-//   localStorage.setItem("activeTodoList", JSON.stringify(projTodos));
-//   set();
-//   }
-
-// }
 
 function populateStorage(){
     
@@ -177,21 +124,36 @@ function set(){
         });
       projectsContainer.modifyProjects(newProjList);
       projectLists.removeChild(divProjectList);
+      localStorage.removeItem(`Project: ${item.name} ${item.id}`);
       console.log(projectsContainer.getProjects());
 
-      const projectItemsDom = document.querySelectorAll(".projectItems");
-      projectItemsDom.forEach((item) =>{
-      // projectLists.removeChild(item);
-      item.remove();
-      });
+      if(projectsContainer.getProjects().length === 0) {
+        projectName.textContent = "No Project";
+        projectName.setAttribute("data-id", "No Project");
+        const todoItemsDom = document.querySelectorAll(".todoItems");
+        todoItemsDom.forEach((item) =>{
+        item.remove();
+        });
+        localStorage.clear();
+      }else{
+        projectName.textContent = `${projectsContainer.getProjects().at(-1).name}`;
+        projectName.setAttribute("data-id", `${projectsContainer.getProjects().at(-1).id}`);
+        console.log(projectsContainer.getProjects());
 
-      const todoItemsDom = document.querySelectorAll(".todoItems");
-      todoItemsDom.forEach((item) =>{
-      item.remove();
-      });
+        const projectItemsDom = document.querySelectorAll(".projectItems");
+        projectItemsDom.forEach((item) =>{
+        // projectLists.removeChild(item);
+        item.remove();
+        });
+
+        const todoItemsDom = document.querySelectorAll(".todoItems");
+        todoItemsDom.forEach((item) =>{
+        item.remove();
+        });
 
       // localStorage.removeItem(`Project: ${item}`);
-      populateStorage();
+        populateStorage();
+        }
     });
 
     projectLists.appendChild(divProjectList);

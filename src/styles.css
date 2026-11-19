@@ -105,3 +105,8 @@ button {
     display: grid;
     grid-template-columns: 90px 90px 90px;
 }
+
+.newTodoButton {
+    padding: 0px;
+    background-color: transparent;
+}

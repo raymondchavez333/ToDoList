@@ -33,7 +33,8 @@ if(!localStorage.length ){
 function firstDefault (){
   let defaultProj = proj("Default");
     // console.log(defaultProj.getId());
-    projectsContainer.addProject(defaultProj.getName());
+    // projectsContainer.addProject(`${defaultProj.getName()} ${defaultProj.getId()}`);
+    projectsContainer.addProject({name: `${defaultProj.getName()}`, id: `${defaultProj.getId()}`});
     console.log(projectsContainer.getProjects());
     let defaultToDo = ToDo("Demo Todo", "hahaha", "March 3, 2027", "high");
     let defaultToDo1 = ToDo("Default1", "hahaha1", "March 3, 2027", "high");
@@ -43,7 +44,9 @@ function firstDefault (){
     // projectTotal.addProject(defaultProj);
     // let projectName = document.querySelector(".sidebar2");
     console.log(defaultProj.getTodos());
+    console.log(defaultProj.getName());
     projectName.textContent = `${defaultProj.getName()}`;
+    projectName.setAttribute("data-id", `${defaultProj.getId()}`);
     // let defaultShow = JSON.parse(localStorage.getItem(`Project: ${defaultProj.getName()}`));
     // console.log(defaultShow);
 
@@ -58,7 +61,8 @@ function firstDefault (){
 
     console.log(projectName.textContent);
 
-    localStorage.setItem("activeProject", projectName.textContent);
+    // localStorage.setItem("activeProject", `${projectName.textContent}`);
+    localStorage.setItem("activeProject", JSON.stringify({name: `${defaultProj.getName()}`, id: `${defaultProj.getId()}`}));
     localStorage.setItem("activeProjectList", JSON.stringify(projectsContainer.getProjects()));
     localStorage.setItem("activeTodoList", JSON.stringify(defaultProj.getTodos()));
 }
@@ -114,8 +118,9 @@ function firstDefault (){
 function populateStorage(){
     
   localStorage.setItem("activeProjectList", JSON.stringify(projectsContainer.getProjects()));
-  localStorage.setItem("activeProject", projectName.textContent);
-  const projTodos = JSON.parse(localStorage.getItem(`Project: ${projectName.textContent}`));
+  // localStorage.setItem("activeProject", projectName.textContent);
+  localStorage.setItem("activeProject", JSON.stringify({name: `${projectName.textContent}`, id: `${projectName.dataset.id}`}));
+  const projTodos = JSON.parse(localStorage.getItem(`Project: ${projectName.textContent} ${projectName.dataset.id}`));
   console.log(projTodos);
   localStorage.setItem("activeTodoList", JSON.stringify(projTodos));
   set();
@@ -125,18 +130,18 @@ function populateStorage(){
 
 function set(){
   projectsContainer.modifyProjects(JSON.parse(localStorage.getItem("activeProjectList")));
-  const currentProject = localStorage.getItem("activeProject");
+  const currentProject = JSON.parse(localStorage.getItem("activeProject"));
   const currentProjectList = localStorage.getItem("activeProjectList");
   const currentTodoList = localStorage.getItem("activeTodoList");
 
-  document.querySelector(".sidebar2").textContent= `${currentProject}`;
+  document.querySelector(".sidebar2").textContent= `${currentProject.name}`;
   const currentProjectListParsed = JSON.parse(currentProjectList);
   currentProjectListParsed.forEach((item) => {
     const divProjectList = document.createElement("div");
     divProjectList.classList.add("projectItems");
     // divProjectList.setAttribute("data-id", )
     const divProjectName = document.createElement("div");
-    divProjectName.textContent = `${item}`;
+    divProjectName.textContent = `${item.name}`;
     divProjectList.appendChild(divProjectName);
     const openButton = document.createElement("button");
     openButton.textContent = "Open";
@@ -149,8 +154,10 @@ function set(){
     // divProjectList.textContent = `${item}`;
 
     openButton.addEventListener("click", () => {
-      localStorage.setItem("activeProject", `${item}`);
-      projectName.textContent = `${item}`;
+      // localStorage.setItem("activeProject", `${item}`);
+      localStorage.setItem("activeProject", JSON.stringify({name: `${item.name}`, id: `${item.id}`}));
+      projectName.textContent = `${item.name}`;
+      projectName.setAttribute("data-id", `${item.id}`);
       const projectItemsDom = document.querySelectorAll(".projectItems");
       projectItemsDom.forEach((item) =>{
       // projectLists.removeChild(item);
@@ -166,7 +173,7 @@ function set(){
 
     deleteButton.addEventListener("click", () => {
       const newProjList = projectsContainer.getProjects().filter(projItem => {
-            return projItem !== item;
+            return projItem.id !== item.id;
         });
       projectsContainer.modifyProjects(newProjList);
       projectLists.removeChild(divProjectList);
@@ -195,6 +202,7 @@ function set(){
   console.log(projectsContainer.getProjects());
   
   const currentTodoListParsed = JSON.parse(currentTodoList);
+  console.log(currentTodoListParsed);
   currentTodoListParsed.forEach((item) => {
     const divTodoList = document.createElement("div");
     divTodoList.classList.add("todoItems");
@@ -241,8 +249,10 @@ confirmBtn.addEventListener("click", (event) => {
   // const newProjDiv = document.createElement("div");
   // newProjDiv.textContent = `${newProj.getName()}`;
   // projectLists.appendChild(newProjDiv);
-  projectsContainer.addProject(newProj.getName());
+  // projectsContainer.addProject(newProj.getName());
+  projectsContainer.addProject({name: `${newProj.getName()}`, id: `${newProj.getId()}`});
   projectName.textContent = `${newProj.getName()}`;
+  projectName.setAttribute("data-id", `${newProj.getId()}`);
 
   populateStorage();
   event.preventDefault(); 

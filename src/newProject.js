@@ -6,7 +6,7 @@ function createProject (name){
 
     const id = crypto.randomUUID();
 
-    localStorage.setItem(`Project: ${name}`, JSON.stringify(todos));
+    localStorage.setItem(`Project: ${name} ${id}`, JSON.stringify(todos));
 
     function addToArray(todo){
         todos.push(todo);
@@ -14,9 +14,9 @@ function createProject (name){
     }
 
     // const addTodos = (item) => todos.push(item); 
-    const addTodos = (item) => localStorage.setItem(`Project: ${name}`, JSON.stringify(addToArray(item)));
+    const addTodos = (item) => localStorage.setItem(`Project: ${name} ${id}`, JSON.stringify(addToArray(item)));
     // const getTodos = () => todos;
-    const getTodos = () => JSON.parse(localStorage.getItem(`Project: ${name}`));
+    const getTodos = () => JSON.parse(localStorage.getItem(`Project: ${name} ${id}`));
 
     const modifyArray = (todo) => {
         
@@ -31,7 +31,7 @@ function createProject (name){
         });
 
         todos = newTodos;
-        localStorage.setItem(`Project: ${name}`, JSON.stringify(todos));
+        localStorage.setItem(`Project: ${name} ${id}`, JSON.stringify(todos));
        
     }
 
@@ -42,7 +42,7 @@ function createProject (name){
         let newTodos = todos.filter((item) => item.title !== todo.title);
 
         todos = newTodos;
-        localStorage.setItem(`Project: ${name}`, JSON.stringify(todos));
+        localStorage.setItem(`Project: ${name} ${id}`, JSON.stringify(todos));
        
     }
 
